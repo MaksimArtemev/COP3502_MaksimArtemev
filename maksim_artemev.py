@@ -8,7 +8,7 @@ def encode(password):
     # Encode the password by shifting each digit up by 3 numbers
     encoded_password = ""
     for digit in password:
-        encoded_digit = (int(digit) + 3)
+        encoded_digit = (int(digit) + 3) % 10
         encoded_password += str(encoded_digit)
 
     return encoded_password
@@ -30,22 +30,33 @@ def readIn_paswd_string():
     return password
 
 
+def decode(password):  # decodes an encoded password
+    decoded = ''
+    for digit in password:
+        new_part = (int(digit) - 3) % 10
+        decoded += str(new_part)
+    return decoded
+
+
 def main():
+    storage = None
     while True:
         print_menu()
         user_menu_choice = user_input_validation(readIn_user_input())
         if user_menu_choice == 1:
-            print(f"Encoded password: {encode(readIn_paswd_string())}")
+            storage = encode(readIn_paswd_string())
+            print(f"Encoded password: {storage}")
             print()
             continue
         elif user_menu_choice == 3:
             exit()
-        '''elif user_menu_choice == 2:
-            decode()
+        elif user_menu_choice == 2:
+            original = decode(storage)
+            print(f"The encoded password is {storage}, and the original password is {original}.")
             continue
         else:
-            print("Oops somethinf went wrong, the program is terminating.")
-            exit()'''
+            print("Oops something went wrong, the program is terminating.")
+            exit()
 
 
 if __name__ == '__main__':
