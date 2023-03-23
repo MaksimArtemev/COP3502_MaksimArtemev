@@ -48,6 +48,7 @@ def main():
             encPass = encode(readIn_paswd_string())
             print()
         elif user_menu_choice == 3: # Will Exit the program
+            False
             exit()
         elif user_menu_choice == 2: # Will Decode the password
             if encPass == None:
@@ -55,7 +56,7 @@ def main():
             else:
                 decode(encPass)
         else:
-            print("Oops somethinf went wrong, the program is terminating.")
+            print("Oops something went wrong, the program is terminating.")
             exit()
 
 
